@@ -1,5 +1,5 @@
-import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { sendSiteEmail } from "@/lib/sendgrid-mail";
 
 export const runtime = "nodejs";
 
@@ -15,14 +15,6 @@ function isBefaringBody(x: unknown): x is BefaringBody {
 }
 
 export async function POST(request: Request) {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) {
-    return NextResponse.json(
-      { error: "RESEND_API_KEY mangler i miljøvariabler" },
-      { status: 500 },
-    );
-  }
-
   let body: unknown;
   try {
     body = await request.json();
@@ -40,8 +32,6 @@ export async function POST(request: Request) {
   }
 
   const to = process.env.CONTACT_EMAIL_TO?.trim() || "info@asbyggas.no";
-  const from =
-    process.env.RESEND_FROM?.trim() || "A.S Bygg AS <kontakt@asbyggas.no>";
 
   const text = [
     `Ønske om gratis befaring (popup på nettsiden)`,
@@ -55,21 +45,16 @@ export async function POST(request: Request) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")}</pre>`;
 
-  const resend = new Resend(key);
-  const { error } = await resend.emails.send({
-    from,
-    to: [to],
+  const result = await sendSiteEmail({
+    to,
     subject: `Befaring: ${navn}`,
     text,
     html,
   });
 
-  if (error) {
-    console.error("Resend befaring:", error);
-    return NextResponse.json(
-      { error: "Kunne ikke sende e-post. Prøv igjen senere." },
-      { status: 502 },
-    );
+  if ("error" in result) {
+    const status = result.error.includes("mangler") ? 500 : 502;
+    return NextResponse.json({ error: result.error }, { status });
   }
 
   return NextResponse.json({ ok: true });
