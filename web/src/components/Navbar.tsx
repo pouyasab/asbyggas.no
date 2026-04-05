@@ -1,0 +1,147 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
+import { Mail, Menu, Phone, X } from "lucide-react";
+import Container from "@/components/Container";
+import { BefaringLeadButton } from "@/components/BefaringLeadButton";
+
+const links = [
+  { href: "/", label: "Hjem" },
+  { href: "/tjenester", label: "Våre tjenester" },
+  { href: "/om-oss", label: "Om oss" },
+  { href: "/kontakt-oss", label: "Kontakt oss" },
+  { href: "/generelle-vilkaar", label: "Generelle vilkår" },
+  { href: "/vilkaar-og-personvern", label: "Personvern" },
+] as const;
+
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const navLinks = useMemo(() => links, []);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setOpen(false);
+  }, [pathname]);
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-surface">
+      <div className="hidden border-b border-border bg-surface-2 md:block">
+        <Container>
+          <div className="flex h-10 items-center justify-between text-sm">
+            <div className="flex items-center gap-6">
+              <a
+                href="tel:+4745260384"
+                className="inline-flex items-center gap-2 font-black text-foreground transition-colors hover:text-accent"
+              >
+                <Phone className="h-4 w-4 text-accent" aria-hidden="true" />
+                +47 452 60 384
+              </a>
+              <a
+                href="mailto:info@asbyggas.no"
+                className="inline-flex items-center gap-2 text-muted transition-colors hover:text-foreground"
+              >
+                <Mail className="h-4 w-4 text-accent" aria-hidden="true" />
+                info@asbyggas.no
+              </a>
+            </div>
+            <div className="text-muted">Gratis befaring • Ryddig arbeid • Norsk klima</div>
+          </div>
+        </Container>
+      </div>
+
+      <Container>
+        <div className="flex min-h-[4.5rem] items-center justify-between gap-4 py-2 sm:min-h-20 sm:py-2.5">
+          <Link
+            href="/"
+            className="inline-flex max-w-[min(100%,320px)] shrink-0 items-center rounded-md bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 sm:max-w-[min(100%,420px)] md:max-w-[min(100%,480px)]"
+            aria-label="A.S Bygg AS - Hjem"
+          >
+            <Image
+              src="/logo-asbygg.png"
+              alt="A.S Bygg AS"
+              width={1024}
+              height={490}
+              className="site-logo h-12 w-auto bg-transparent object-contain object-left sm:h-14 md:h-16"
+              priority
+              sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 420px"
+            />
+          </Link>
+
+          <nav className="hidden items-center gap-6 md:flex" aria-label="Hovedmeny">
+            {navLinks.slice(0, 5).map((l) => {
+              const active = isActive(pathname, l.href);
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className={[
+                    "text-sm font-black uppercase tracking-wide transition-colors",
+                    active ? "text-foreground" : "text-muted hover:text-foreground",
+                  ].join(" ")}
+                >
+                  {l.label}
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <BefaringLeadButton className="inline-flex h-11 items-center justify-center rounded-md bg-accent px-5 text-sm font-black text-white uppercase tracking-wide transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+              Få gratis befaring
+            </BefaringLeadButton>
+          </div>
+
+          <div className="md:hidden">
+            <button
+              type="button"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-surface hover:bg-surface-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+              aria-label={open ? "Lukk meny" : "Åpne meny"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
+        </div>
+
+        {open ? (
+          <div className="pb-5 md:hidden">
+            <div className="mt-4 grid gap-2 rounded-md border border-border bg-surface p-3">
+              {navLinks.map((l) => {
+                const active = isActive(pathname, l.href);
+                return (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className={[
+                      "flex items-center justify-between rounded-md px-3 py-3 text-sm font-black uppercase tracking-wide transition-colors",
+                      active
+                        ? "bg-surface-2 text-foreground"
+                        : "text-muted hover:text-foreground hover:bg-surface-2",
+                    ].join(" ")}
+                  >
+                    <span>{l.label}</span>
+                    <span className="text-muted">›</span>
+                  </Link>
+                );
+              })}
+
+              <BefaringLeadButton className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-md bg-accent text-sm font-black text-white uppercase tracking-wide transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
+                Bestill gratis befaring
+              </BefaringLeadButton>
+            </div>
+          </div>
+        ) : null}
+      </Container>
+    </header>
+  );
+}
+

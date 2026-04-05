@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f2eb; /* varm, praktisk lys bakgrunn */
+  --foreground: #1a1a1a; /* robust mørk tekst */
+  --muted: #4b4b4b;
+  --accent: #1f4d3a; /* mørk grønn (håndverk) */
+  --accent-ink: #163428;
+  --surface: #ffffff;
+  --surface-2: #fbfaf7;
+  --border: rgba(0, 0, 0, 0.14);
+  --ring: rgba(31, 77, 58, 0.35);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+::selection {
+  background: rgba(31, 77, 58, 0.22);
+}
+
+/* Justerer logo (tidligere turkis) mot samme grønnfarge som --accent */
+.site-logo {
+  filter: hue-rotate(-34deg) saturate(1.18) brightness(0.9) contrast(1.03);
+}
