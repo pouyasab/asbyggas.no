@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sendSiteEmail } from "@/lib/sendgrid-mail";
+import { getContactInboxTo, sendSiteEmail } from "@/lib/sendgrid-mail";
 
 export const runtime = "nodejs";
 
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Validering feilet" }, { status: 400 });
   }
 
-  const to = process.env.CONTACT_EMAIL_TO?.trim() || "info@asbyggas.no";
+  const to = getContactInboxTo();
 
   const tilbud = [
     tilbudTakvask && "Takvask",

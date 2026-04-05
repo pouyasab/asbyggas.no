@@ -1,5 +1,10 @@
 import sgMail from "@sendgrid/mail";
 
+/** Samme mottaker som kontaktskjema og «Gratis befaring» (ingen ekstra miljøvariabler). */
+export function getContactInboxTo(): string {
+  return process.env.CONTACT_EMAIL_TO?.trim() || "info@asbyggas.no";
+}
+
 export function getSendgridConfigured(): {
   ok: true;
   fromEmail: string;
