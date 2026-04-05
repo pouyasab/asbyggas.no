@@ -1,15 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Container from "@/components/Container";
-
-const footerLinks = [
-  { href: "/", label: "Hjem" },
-  { href: "/tjenester", label: "Våre tjenester" },
-  { href: "/om-oss", label: "Om oss" },
-  { href: "/kontakt-oss", label: "Kontakt oss" },
-  { href: "/generelle-vilkaar", label: "Generelle vilkår" },
-  { href: "/vilkaar-og-personvern", label: "Vilkår og personvern" },
-] as const;
+import { legalSiteNavLinks, primarySiteNavLinks } from "@/lib/site-links";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -29,7 +21,7 @@ export default function Footer() {
           <div className="space-y-3">
             <div className="text-sm font-black uppercase tracking-wide">Lenker</div>
             <ul className="grid gap-2 sm:grid-cols-2">
-              {footerLinks.map((l) => (
+              {primarySiteNavLinks.map((l) => (
                 <li key={l.href}>
                   <Link
                     href={l.href}
@@ -40,6 +32,23 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <div className="border-t border-border pt-3" role="group" aria-label="Juridisk">
+              <ul className="space-y-2">
+                {legalSiteNavLinks.map((l, index) => (
+                  <li
+                    key={l.href}
+                    className={index === 1 ? "border-l-2 border-accent/40 pl-3 ml-1" : ""}
+                  >
+                    <Link
+                      href={l.href}
+                      className="text-sm text-muted transition-colors hover:text-foreground"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
           <div className="space-y-3">

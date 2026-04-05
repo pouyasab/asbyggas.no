@@ -3,19 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Mail, Menu, Phone, X } from "lucide-react";
 import Container from "@/components/Container";
 import { BefaringLeadButton } from "@/components/BefaringLeadButton";
-
-const links = [
-  { href: "/", label: "Hjem" },
-  { href: "/tjenester", label: "Våre tjenester" },
-  { href: "/om-oss", label: "Om oss" },
-  { href: "/kontakt-oss", label: "Kontakt oss" },
-  { href: "/generelle-vilkaar", label: "Generelle vilkår" },
-  { href: "/vilkaar-og-personvern", label: "Personvern" },
-] as const;
+import { legalSiteNavLinks, primarySiteNavLinks } from "@/lib/site-links";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
@@ -25,8 +17,6 @@ function isActive(pathname: string, href: string) {
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const navLinks = useMemo(() => links, []);
-
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
@@ -76,8 +66,11 @@ export default function Navbar() {
             />
           </Link>
 
-          <nav className="hidden min-w-0 flex-1 flex-wrap items-center justify-center gap-x-3 gap-y-1 md:flex lg:gap-x-5" aria-label="Hovedmeny">
-            {navLinks.map((l) => {
+          <nav
+            className="hidden min-w-0 flex-1 flex-wrap items-center justify-center gap-x-3 gap-y-2 md:flex lg:gap-x-5"
+            aria-label="Hovedmeny"
+          >
+            {primarySiteNavLinks.map((l) => {
               const active = isActive(pathname, l.href);
               return (
                 <Link
@@ -92,6 +85,27 @@ export default function Navbar() {
                 </Link>
               );
             })}
+            <div
+              className="flex flex-col items-center gap-1 border-l border-border pl-3 lg:gap-1.5 lg:pl-5"
+              role="group"
+              aria-label="Juridisk"
+            >
+              {legalSiteNavLinks.map((l) => {
+                const active = isActive(pathname, l.href);
+                return (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className={[
+                      "text-sm font-black uppercase tracking-wide transition-colors",
+                      active ? "text-foreground" : "text-muted hover:text-foreground",
+                    ].join(" ")}
+                  >
+                    {l.label}
+                  </Link>
+                );
+              })}
+            </div>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
@@ -115,7 +129,7 @@ export default function Navbar() {
         {open ? (
           <div className="pb-5 md:hidden">
             <div className="mt-4 grid gap-2 rounded-md border border-border bg-surface p-3">
-              {navLinks.map((l) => {
+              {primarySiteNavLinks.map((l) => {
                 const active = isActive(pathname, l.href);
                 return (
                   <Link
@@ -133,6 +147,28 @@ export default function Navbar() {
                   </Link>
                 );
               })}
+
+              <div className="mt-1 border-t border-border pt-2" role="group" aria-label="Juridisk">
+                {legalSiteNavLinks.map((l, index) => {
+                  const active = isActive(pathname, l.href);
+                  return (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className={[
+                        "flex items-center justify-between rounded-md py-3 text-sm font-black uppercase tracking-wide transition-colors",
+                        index === 0 ? "px-3" : "ml-3 border-l-2 border-accent/40 pl-4 pr-3",
+                        active
+                          ? "bg-surface-2 text-foreground"
+                          : "text-muted hover:text-foreground hover:bg-surface-2",
+                      ].join(" ")}
+                    >
+                      <span>{l.label}</span>
+                      <span className="text-muted">›</span>
+                    </Link>
+                  );
+                })}
+              </div>
 
               <BefaringLeadButton className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-md bg-accent text-sm font-black text-white uppercase tracking-wide transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">
                 Bestill gratis befaring
