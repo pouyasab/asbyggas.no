@@ -3,24 +3,54 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { Mail, Menu, Phone, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 import Container from "@/components/Container";
 import { BefaringLeadButton } from "@/components/BefaringLeadButton";
-import { legalSiteNavLinks, primarySiteNavLinks } from "@/lib/site-links";
+import { legalSiteNavLinks, primarySiteNavLinks, vilkaarPersonvernSubmenu } from "@/lib/site-links";
 
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+function isLegalRoute(pathname: string) {
+  return legalSiteNavLinks.some((l) => isActive(pathname, l.href));
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [legalDropdownOpen, setLegalDropdownOpen] = useState(false);
+  const [legalMobileExpanded, setLegalMobileExpanded] = useState(false);
+  const legalDropdownRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setOpen(false);
+    setLegalDropdownOpen(false);
+    setLegalMobileExpanded(false);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) setLegalMobileExpanded(false);
+  }, [open]);
+
+  useEffect(() => {
+    if (!legalDropdownOpen) return;
+    function onDoc(e: MouseEvent) {
+      if (!legalDropdownRef.current?.contains(e.target as Node)) setLegalDropdownOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setLegalDropdownOpen(false);
+    }
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDoc);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [legalDropdownOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-surface">
@@ -85,26 +115,56 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <div
-              className="flex flex-col items-center gap-1 border-l border-border pl-3 lg:gap-1.5 lg:pl-5"
-              role="group"
-              aria-label="Juridisk"
-            >
-              {legalSiteNavLinks.map((l) => {
-                const active = isActive(pathname, l.href);
-                return (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className={[
-                      "text-sm font-black uppercase tracking-wide transition-colors",
-                      active ? "text-foreground" : "text-muted hover:text-foreground",
-                    ].join(" ")}
-                  >
-                    {l.label}
-                  </Link>
-                );
-              })}
+
+            <div className="relative border-l border-border pl-3 lg:pl-5" ref={legalDropdownRef}>
+              <button
+                type="button"
+                className={[
+                  "inline-flex items-center gap-1 text-sm font-black uppercase tracking-wide transition-colors",
+                  isLegalRoute(pathname) || legalDropdownOpen
+                    ? "text-foreground"
+                    : "text-muted hover:text-foreground",
+                ].join(" ")}
+                aria-expanded={legalDropdownOpen}
+                aria-haspopup="true"
+                aria-controls="vilkaar-submenu-desktop"
+                id="vilkaar-submenu-button"
+                onClick={() => setLegalDropdownOpen((v) => !v)}
+              >
+                {vilkaarPersonvernSubmenu.label}
+                <ChevronDown
+                  className={["h-4 w-4 shrink-0 transition-transform", legalDropdownOpen ? "rotate-180" : ""].join(
+                    " ",
+                  )}
+                  aria-hidden="true"
+                />
+              </button>
+              {legalDropdownOpen ? (
+                <div
+                  id="vilkaar-submenu-desktop"
+                  role="menu"
+                  aria-labelledby="vilkaar-submenu-button"
+                  className="absolute left-0 top-full z-[60] mt-2 min-w-[14rem] rounded-md border border-border bg-surface py-1 shadow-lg"
+                >
+                  {legalSiteNavLinks.map((l) => {
+                    const active = isActive(pathname, l.href);
+                    return (
+                      <Link
+                        key={l.href}
+                        href={l.href}
+                        role="menuitem"
+                        className={[
+                          "block px-4 py-2.5 text-sm font-black uppercase tracking-wide transition-colors",
+                          active ? "bg-surface-2 text-foreground" : "text-muted hover:bg-surface-2 hover:text-foreground",
+                        ].join(" ")}
+                        onClick={() => setLegalDropdownOpen(false)}
+                      >
+                        {l.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              ) : null}
             </div>
           </nav>
 
@@ -148,26 +208,50 @@ export default function Navbar() {
                 );
               })}
 
-              <div className="mt-1 border-t border-border pt-2" role="group" aria-label="Juridisk">
-                {legalSiteNavLinks.map((l, index) => {
-                  const active = isActive(pathname, l.href);
-                  return (
-                    <Link
-                      key={l.href}
-                      href={l.href}
-                      className={[
-                        "flex items-center justify-between rounded-md py-3 text-sm font-black uppercase tracking-wide transition-colors",
-                        index === 0 ? "px-3" : "ml-3 border-l-2 border-accent/40 pl-4 pr-3",
-                        active
-                          ? "bg-surface-2 text-foreground"
-                          : "text-muted hover:text-foreground hover:bg-surface-2",
-                      ].join(" ")}
-                    >
-                      <span>{l.label}</span>
-                      <span className="text-muted">›</span>
-                    </Link>
-                  );
-                })}
+              <div className="mt-1 border-t border-border pt-2">
+                <button
+                  type="button"
+                  className={[
+                    "flex w-full items-center justify-between rounded-md px-3 py-3 text-left text-sm font-black uppercase tracking-wide transition-colors",
+                    isLegalRoute(pathname) || legalMobileExpanded
+                      ? "bg-surface-2 text-foreground"
+                      : "text-muted hover:bg-surface-2 hover:text-foreground",
+                  ].join(" ")}
+                  aria-expanded={legalMobileExpanded}
+                  aria-controls="vilkaar-submenu-mobile"
+                  id="vilkaar-submenu-mobile-button"
+                  onClick={() => setLegalMobileExpanded((v) => !v)}
+                >
+                  <span>{vilkaarPersonvernSubmenu.label}</span>
+                  <ChevronDown
+                    className={["h-5 w-5 shrink-0 text-muted transition-transform", legalMobileExpanded ? "rotate-180" : ""].join(
+                      " ",
+                    )}
+                    aria-hidden="true"
+                  />
+                </button>
+                {legalMobileExpanded ? (
+                  <div id="vilkaar-submenu-mobile" className="border-t border-border bg-surface-2/50" role="group">
+                    {legalSiteNavLinks.map((l) => {
+                      const active = isActive(pathname, l.href);
+                      return (
+                        <Link
+                          key={l.href}
+                          href={l.href}
+                          className={[
+                            "flex items-center justify-between border-l-2 border-accent/40 py-3 pl-4 pr-3 text-sm font-black uppercase tracking-wide transition-colors",
+                            active
+                              ? "bg-surface-2 text-foreground"
+                              : "text-muted hover:text-foreground hover:bg-surface-2",
+                          ].join(" ")}
+                        >
+                          <span>{l.label}</span>
+                          <span className="text-muted">›</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                ) : null}
               </div>
 
               <BefaringLeadButton className="mt-2 inline-flex h-12 w-full items-center justify-center rounded-md bg-accent text-sm font-black text-white uppercase tracking-wide transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40">

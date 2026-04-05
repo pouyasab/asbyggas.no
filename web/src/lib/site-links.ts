@@ -8,5 +8,13 @@ export const siteNavLinks = [
   { href: "/vilkaar-og-personvern", label: "Personvern" },
 ] as const;
 
-export const primarySiteNavLinks = siteNavLinks.slice(0, 5);
-export const legalSiteNavLinks = siteNavLinks.slice(5, 7);
+/** Toppnivå i hovedmenyen (før undermenyen «Vilkår og personvern»). */
+export const primarySiteNavLinks = siteNavLinks.slice(0, 4);
+
+export const legalSiteNavLinks = siteNavLinks.slice(4, 6);
+
+/** Undermeny: vises ved klikk på «Vilkår og personvern». */
+export const vilkaarPersonvernSubmenu = {
+  label: "Vilkår og personvern",
+  links: legalSiteNavLinks,
+} as const;

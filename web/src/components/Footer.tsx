@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Container from "@/components/Container";
-import { legalSiteNavLinks, primarySiteNavLinks } from "@/lib/site-links";
+import { legalSiteNavLinks, primarySiteNavLinks, vilkaarPersonvernSubmenu } from "@/lib/site-links";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -32,13 +32,17 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <div className="border-t border-border pt-3" role="group" aria-label="Juridisk">
+            <div
+              className="border-t border-border pt-3"
+              role="group"
+              aria-label={vilkaarPersonvernSubmenu.label}
+            >
+              <p className="mb-2 text-xs font-black uppercase tracking-wide text-muted">
+                {vilkaarPersonvernSubmenu.label}
+              </p>
               <ul className="space-y-2">
-                {legalSiteNavLinks.map((l, index) => (
-                  <li
-                    key={l.href}
-                    className={index === 1 ? "border-l-2 border-accent/40 pl-3 ml-1" : ""}
-                  >
+                {legalSiteNavLinks.map((l) => (
+                  <li key={l.href}>
                     <Link
                       href={l.href}
                       className="text-sm text-muted transition-colors hover:text-foreground"
