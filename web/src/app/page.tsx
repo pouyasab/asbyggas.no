@@ -120,11 +120,24 @@ export default function Home() {
       <section className="py-14 md:py-18">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:items-start">
-            <SectionHeading
-              eyebrow="Hvorfor velge oss"
-              title="Ryddig arbeid. Riktig utstyr. Norsk klima."
-              subtitle="Vi møter opp når vi skal, jobber effektivt og leverer et resultat du kan se."
-            />
+            <div className="flex flex-col gap-6 md:gap-8">
+              <SectionHeading
+                eyebrow="Hvorfor velge oss"
+                title="Ryddig arbeid. Riktig utstyr. Norsk klima."
+                subtitle="Vi møter opp når vi skal, jobber effektivt og leverer et resultat du kan se."
+              />
+              <figure className="overflow-hidden rounded-md border border-border bg-surface shadow-sm">
+                <div className="relative aspect-[4/3] w-full bg-surface-2 sm:aspect-[16/10]">
+                  <Image
+                    src="/hvorfor-velge-oss.png"
+                    alt="Håndverker med verneutstyr ved tak med teglstein"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+              </figure>
+            </div>
 
             <div className="grid gap-4">
               {[
