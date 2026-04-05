@@ -6,7 +6,7 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Våre tjenester | A.S Bygg AS",
   description:
-    "Praktiske tjenester innen takvask og takvedlikehold. Kort forklart – slik jobben gjøres.",
+    "Praktiske tjenester innen takvask og takvedlikehold. Kort forklart: slik jobben gjøres.",
 };
 
 export default function ServicesPage() {
@@ -16,7 +16,7 @@ export default function ServicesPage() {
         <Container>
           <SectionHeading
             eyebrow="Våre tjenester"
-            title="Takvask og vedlikehold – jobben gjort skikkelig"
+            title="Takvask og vedlikehold: jobben gjort skikkelig"
             subtitle={
               <>
                 Vi presenterer tjenestene slik de faktisk utføres: kort, praktisk og
@@ -34,7 +34,7 @@ export default function ServicesPage() {
                 <div className="flex-1">
                   <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Takvask (hovedtjeneste)</h2>
                   <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
-                    Takvask handler om å fjerne mose, alger og smuss på en skånsom måte – uten å skade takstein eller overflater.
+                    Takvask handler om å fjerne mose, alger og smuss på en skånsom måte, uten å skade takstein eller overflater.
                     Riktig vask gir bedre utseende og kan forebygge unødvendig slitasje.
                   </p>
                   <ul className="mt-5 grid gap-2 text-sm text-muted sm:grid-cols-2">
@@ -144,7 +144,7 @@ export default function ServicesPage() {
                 Viktig
               </div>
               <p className="mt-2 text-sm leading-7 text-muted">
-                Metode og trykk tilpasses taktype og tilstand. Vi tar ikke “én løsning passer alle”-tilnærmingen.
+                Metode og trykk tilpasses taktype og tilstand. Vi tar ikke tilnærmingen der én løsning skal passe alle.
               </p>
             </div>
           </div>

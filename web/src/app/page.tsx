@@ -16,13 +16,13 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Hjem | A.S Bygg AS",
   description:
-    "Profesjonell takvask som forlenger levetiden på taket ditt. Vi fjerner mose, alger og smuss – og gir taket nytt liv.",
+    "Profesjonell takvask som forlenger levetiden på taket ditt. Vi fjerner mose, alger og smuss, og gir taket nytt liv.",
 };
 
 export default function Home() {
   return (
     <div className="bg-background">
-      {/* Hero – ekte foto, cover over hele bredden */}
+      {/* Hero: ekte foto, cover over hele bredden */}
       <section
         className="relative isolate min-h-[min(88vh,760px)] sm:min-h-[min(80vh,700px)]"
         aria-label="Tak og fasade"
@@ -48,7 +48,7 @@ export default function Home() {
                 Profesjonell takvask som forlenger levetiden på taket ditt
               </h1>
               <p className="mt-4 text-lg leading-8 text-[#e8e4d9] sm:text-xl [text-shadow:0_2px_16px_rgba(0,0,0,0.88),0_1px_2px_rgba(0,0,0,0.9)]">
-                Vi fjerner mose, alger og smuss – og gir taket ditt nytt liv.
+                Vi fjerner mose, alger og smuss, og gir taket ditt nytt liv.
               </p>
 
               <div className="mt-7 flex flex-col gap-3 sm:flex-row">
@@ -65,7 +65,7 @@ export default function Home() {
 
               <div className="mt-10 grid gap-3 sm:grid-cols-3">
                 {[
-                  { icon: Shield, title: "Solid utførelse", text: "Jobben gjøres skikkelig – hver gang." },
+                  { icon: Shield, title: "Solid utførelse", text: "Jobben gjøres skikkelig, hver gang." },
                   { icon: Leaf, title: "Skånsomt", text: "Metoder og midler som tar hensyn." },
                   { icon: Sparkles, title: "Synlig resultat", text: "Renere tak og bedre helhetsinntrykk." },
                 ].map((b) => (
@@ -94,7 +94,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Hva vi gjør"
             title="Praktiske tjenester for tak og fasade"
-            subtitle="Kort og konkret – dette er jobben vi gjør ute hos kunder."
+            subtitle="Kort og konkret: dette er jobben vi gjør ute hos kunder."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-4">
@@ -129,7 +129,7 @@ export default function Home() {
             <div className="grid gap-4">
               {[
                 { title: "Erfaring", text: "Vi vet hva som fungerer på norske tak." },
-                { title: "Kvalitetsutstyr", text: "Riktig trykk og riktig metode – uten å skade taket." },
+                { title: "Kvalitetsutstyr", text: "Riktig trykk og riktig metode, uten å skade taket." },
                 { title: "Tilpasset norsk klima", text: "Behandling som tåler fukt, frost og vær." },
                 { title: "Pålitelig service", text: "Tydelig avtale, ryddig gjennomføring." },
               ].map((r) => (
@@ -148,7 +148,7 @@ export default function Home() {
         <Container>
           <SectionHeading
             eyebrow="Hvordan vi jobber"
-            title="Steg for steg – slik får du et rent tak"
+            title="Steg for steg: slik får du et rent tak"
             subtitle="En enkel prosess som gir forutsigbarhet og trygghet."
           />
 
@@ -177,9 +177,9 @@ export default function Home() {
       <section className="py-14 md:py-18">
         <Container>
           <SectionHeading
-            eyebrow="Før / etter"
+            eyebrow="Før og etter"
             title="Synlig forskjell"
-            subtitle="Ekte resultater fra takvask – før og etter."
+            subtitle="Ekte resultater fra takvask, før og etter."
           />
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 md:items-stretch">
@@ -189,7 +189,7 @@ export default function Home() {
                 <div className="relative mx-auto aspect-[3/4] max-h-[520px] w-full max-w-md">
                   <Image
                     src="/for-etter-for.png"
-                    alt="Tak før takvask – mose, alger og smuss på takstein"
+                    alt="Tak før takvask: mose, alger og smuss på takstein"
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -198,7 +198,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="mt-3 text-sm text-muted">
-                Slik kan et tak se ut før vask – mose, alger og smuss som bør fjernes.
+                Slik kan et tak se ut før vask: mose, alger og smuss som bør fjernes.
               </p>
             </div>
             <div className="flex flex-col rounded-md border border-border bg-surface p-6 shadow-sm">
@@ -207,7 +207,7 @@ export default function Home() {
                 <div className="relative mx-auto aspect-[3/4] max-h-[520px] w-full max-w-md">
                   <Image
                     src="/for-etter-etter.png"
-                    alt="Tak etter takvask – rent og godt vedlikeholdt"
+                    alt="Tak etter takvask: rent og godt vedlikeholdt"
                     fill
                     className="object-cover object-center"
                     sizes="(max-width: 768px) 100vw, 50vw"
@@ -233,7 +233,7 @@ export default function Home() {
                 Klar for befaring?
               </div>
               <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">
-                Bestill gratis befaring – så finner vi riktig løsning.
+                Bestill gratis befaring, så finner vi riktig løsning.
               </h2>
               <p className="mt-2 text-sm leading-7 text-muted sm:text-base">
                 Ring oss eller send en kort melding. Vi svarer så raskt vi kan.

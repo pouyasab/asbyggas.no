@@ -8,7 +8,7 @@ import SectionHeading from "@/components/SectionHeading";
 export const metadata: Metadata = {
   title: "Om oss | A.S Bygg AS",
   description:
-    "Et lokalt håndverksfirma med fokus på takvask og vedlikehold – jordnært, ærlig og ryddig.",
+    "Et lokalt håndverksfirma med fokus på takvask og vedlikehold: jordnært, ærlig og ryddig.",
 };
 
 const card =
@@ -24,7 +24,7 @@ export default function AboutPage() {
             <SectionHeading
               eyebrow="Om oss"
               title="Lokalt firma. Godt håndverk."
-              subtitle="For oss handler det om å gjøre jobben skikkelig – hver gang."
+              subtitle="For oss handler det om å gjøre jobben skikkelig, hver gang."
             />
           </header>
 
@@ -34,7 +34,7 @@ export default function AboutPage() {
               <div className="relative aspect-[4/3] w-full bg-surface-2">
                 <Image
                   src="/om-oss-tak.png"
-                  alt="Håndverker som arbeider med takstein – vedlikehold og kontroll på taket"
+                  alt="Håndverker som arbeider med takstein: vedlikehold og kontroll på taket"
                   fill
                   className="object-cover object-center"
                   sizes="(max-width: 1024px) 100vw, 42vw"
@@ -42,7 +42,7 @@ export default function AboutPage() {
                 />
               </div>
               <figcaption className="border-t border-border px-5 py-4 text-xs leading-relaxed text-muted">
-                Vi jobber ute på taket – med riktig utstyr, god kontroll og respekt for huset ditt.
+                Vi jobber ute på taket, med riktig utstyr, god kontroll og respekt for huset ditt.
               </figcaption>
             </figure>
 
@@ -85,7 +85,7 @@ export default function AboutPage() {
               </h2>
               <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
                 Vi starter med befaring, forklarer hva som bør gjøres, og gjennomfører arbeidet med riktig utstyr.
-                Du får et resultat du kan se – og et tak som varer lenger.
+                Du får et resultat du kan se, og et tak som varer lenger.
               </p>
 
               <ul className="mt-6 space-y-3 border-t border-border pt-6">

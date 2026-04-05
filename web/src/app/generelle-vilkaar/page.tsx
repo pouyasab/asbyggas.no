@@ -6,7 +6,7 @@ import Container from "@/components/Container";
 export const metadata: Metadata = {
   title: "Generelle vilkår | A.S Bygg AS",
   description:
-    "Generelle vilkår for A.S Bygg AS – tilbud, priser, omfang, HMS, fakturering og personvern.",
+    "Generelle vilkår for A.S Bygg AS: tilbud, priser, omfang, HMS, fakturering og personvern.",
 };
 
 function Section({
@@ -52,12 +52,12 @@ export default function GenerelleVilkaarPage() {
             <Section title="Standardpriser for tjenester">
               <p>Følgende veiledende enhetspriser gjelder dersom annet ikke er avtalt i tilbudet:</p>
               <ul className="list-inside list-disc space-y-2 pl-1">
-                <li>Takvask: kr 110,- per m² eks. mva</li>
-                <li>Impregnering av tak: kr 35,- per m² eks. mva</li>
-                <li>Takmaling: kr 25,- per m² eks. mva</li>
+                <li>Takvask: kr 110 per m² eks. mva</li>
+                <li>Impregnering av tak: kr 35 per m² eks. mva</li>
+                <li>Takmaling: kr 25 per m² eks. mva</li>
               </ul>
               <p className="pt-2">
-                I tillegg påløper oppmøtekostnad på kr 2 000,- inkl. mva per oppdrag.
+                I tillegg påløper oppmøtekostnad på kr 2 000 inkl. mva per oppdrag.
               </p>
             </Section>
 
@@ -80,7 +80,7 @@ export default function GenerelleVilkaarPage() {
 
             <Section title="HMS og sikkerhet">
               <p>
-                Vi følger strenge helse-, miljø- og sikkerhetskrav (HMS). Alle ansatte er opplært i henhold til
+                Vi følger strenge krav til helse, miljø og sikkerhet (HMS). Alle ansatte er opplært i henhold til
                 lovpålagte krav, og vi benytter kun godkjent utstyr og kjemikalier for å minimere risiko.
               </p>
             </Section>
@@ -109,7 +109,7 @@ export default function GenerelleVilkaarPage() {
 
             <Section title="Oppsigelse av avtale">
               <p>
-                Oppsigelse må skje skriftlig via e-post, med 30 dagers oppsigelsestid før neste planlagte utførelse.
+                Oppsigelse må skje skriftlig via epost, med 30 dagers oppsigelsestid før neste planlagte utførelse.
                 Begge parter kan si opp avtalen, men ved vesentlige misforhold eller betalingsproblemer forbeholder vi
                 oss retten til å avslutte oppdraget med umiddelbar virkning.
               </p>
@@ -124,7 +124,7 @@ export default function GenerelleVilkaarPage() {
 
             <Section title="Fakturering og betaling">
               <p>
-                Alle fakturaer har 14 dagers betalingsfrist, med mulighet for EHF, e-post eller post. Ved forsinket
+                Alle fakturaer har 14 dagers betalingsfrist, med mulighet for EHF, epost eller post. Ved forsinket
                 betaling påløper purregebyr og renter etter gjeldende lov. Dersom det blir nødvendig å benytte stillas
                 eller lift under oppdraget, vil kostnaden komme i tillegg og legges til på fakturaen.
               </p>
@@ -132,7 +132,7 @@ export default function GenerelleVilkaarPage() {
 
             <Section title="Bestilling og kampanjer">
               <p>
-                Bestilling skjer via nett, telefon eller e-post, og forplikter kunden til å gi korrekt informasjon. Vi
+                Bestilling skjer via nett, telefon eller epost, og forplikter kunden til å gi korrekt informasjon. Vi
                 tilbyr også spesialtilbud og kampanjer for nye kunder og bestemte tjenester.
               </p>
             </Section>

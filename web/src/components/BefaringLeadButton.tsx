@@ -45,7 +45,7 @@ function BefaringModal({
     e.preventDefault();
     if (!canSubmit) return;
     setSent(true);
-    // Koble til API/e-post senere.
+    // Koble til API eller epost senere.
   }
 
   return (
@@ -141,7 +141,7 @@ type BefaringLeadButtonProps = {
 } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "type" | "onClick">;
 
 /**
- * Åpner et popup-vindu for navn + telefon (gratis befaring).
+ * Åpner et vindu (modal) for navn og telefon ved gratis befaring.
  */
 export function BefaringLeadButton({
   children,

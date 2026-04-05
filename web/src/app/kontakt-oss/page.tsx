@@ -19,7 +19,7 @@ export default function ContactPage() {
     <div className="bg-background">
       <section className="pb-12 pt-12 md:pb-20 md:pt-12">
         <Container>
-          {/* 1. Telefon-stripe */}
+          {/* 1. Telefonstripe */}
           <div
             className={`${card} mb-8 flex flex-col gap-6 p-6 md:flex-row md:items-center md:justify-between md:gap-8`}
           >
@@ -51,7 +51,7 @@ export default function ContactPage() {
             <div className="relative w-full bg-surface-2 aspect-[3/2] min-h-[240px] sm:aspect-[16/7] sm:min-h-[300px] md:min-h-[380px] lg:aspect-[21/9] lg:min-h-[420px]">
               <Image
                 src="/kontakt-takvask.png"
-                alt="Takvask med høytrykk – profesjonelt arbeid på tak med sikkerhetsutstyr"
+                alt="Takvask med høytrykk: profesjonelt arbeid på tak med sikkerhetsutstyr"
                 fill
                 className="object-cover object-center"
                 sizes="100vw"
@@ -59,7 +59,7 @@ export default function ContactPage() {
               />
             </div>
             <figcaption className="border-t border-border px-5 py-4 text-sm leading-relaxed text-muted md:px-8 md:py-5">
-              Vi utfører takvask ute på taket – med riktig utstyr, sikkerhet og ryddig gjennomføring.
+              Vi utfører takvask ute på taket, med riktig utstyr, sikkerhet og ryddig gjennomføring.
             </figcaption>
           </figure>
 
@@ -81,7 +81,7 @@ export default function ContactPage() {
                 </div>
                 <div className="flex items-start gap-3 rounded-md border border-border bg-surface-2 p-4 text-sm text-muted">
                   <Mail className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
-                  <span>E-post: info@asbyggas.no</span>
+                  <span>Epost: info@asbyggas.no</span>
                 </div>
                 <div className="flex items-start gap-3 rounded-md border border-border bg-surface-2 p-4 text-sm text-muted">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
@@ -93,13 +93,13 @@ export default function ContactPage() {
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden="true" />
                 <div>
                   <div className="font-semibold text-foreground">Åpningstider</div>
-                  <div className="mt-1">Mandag – fredag</div>
-                  <div>08:00 – 16:00</div>
+                  <div className="mt-1">Mandag til fredag</div>
+                  <div>08:00 til 16:00</div>
                 </div>
               </div>
 
               <p className="mt-6 text-sm leading-7 text-muted">
-                Du finner oss i Buskerud, men vi opererer i hele Viken-området.
+                Du finner oss i Buskerud, men vi opererer i hele Viken.
                 Kontakt oss gjerne for å avtale et møte eller for å få et uforpliktende tilbud på dine
                 takprosjekter. Vi ser frem til å høre fra deg!
               </p>
@@ -114,7 +114,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* 4. Kontaktskjema – samme bredde som kontaktinfo-boksen over (full bredde i container) */}
+          {/* 4. Kontaktskjema, samme bredde som kontaktinfo-boksen over (full bredde i container) */}
           <div className="mt-10 w-full md:mt-12">
             <ContactForm />
           </div>

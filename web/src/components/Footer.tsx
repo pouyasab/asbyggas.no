@@ -51,15 +51,15 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-2">
                 <Mail className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
-                <span>E-post: info@asbyggas.no</span>
+                <span>Epost: info@asbyggas.no</span>
               </div>
               <div className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-accent" aria-hidden="true" />
                 <span>Adresse: Krokstadelva, Drammen</span>
               </div>
               <div className="pt-1 text-xs leading-relaxed">
-                <span className="font-semibold text-foreground">Åpningstider:</span> mandag–fredag{" "}
-                08:00–16:00
+                <span className="font-semibold text-foreground">Åpningstider:</span> mandag til fredag,{" "}
+                08:00 til 16:00
               </div>
             </div>
           </div>

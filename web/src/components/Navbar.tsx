@@ -63,7 +63,7 @@ export default function Navbar() {
           <Link
             href="/"
             className="inline-flex max-w-[min(100%,320px)] shrink-0 items-center rounded-md bg-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 sm:max-w-[min(100%,420px)] md:max-w-[min(100%,480px)]"
-            aria-label="A.S Bygg AS - Hjem"
+            aria-label="A.S Bygg AS, hjem"
           >
             <Image
               src="/logo-asbygg.png"

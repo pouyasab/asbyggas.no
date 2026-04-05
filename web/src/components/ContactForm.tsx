@@ -73,7 +73,7 @@ export default function ContactForm() {
             Takk! Henvendelsen er sendt.
           </div>
           <p className="text-sm leading-7 text-muted">
-            Denne malen lagrer ikke innsendte data. Koble til backend eller e-postsending når du er klar.
+            Denne malen lagrer ikke innsendte data. Koble til backend eller epostsending når du er klar.
           </p>
           <button
             type="button"
@@ -88,7 +88,7 @@ export default function ContactForm() {
         </div>
       ) : (
         <form onSubmit={onSubmit} className="space-y-6">
-          {/* Navn – to felt */}
+          {/* Navn, to felt */}
           <div className="space-y-2">
             <span className={labelClass}>
               Navn
@@ -119,7 +119,7 @@ export default function ContactForm() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             <label className="block space-y-2">
               <span className={labelClass}>
-                E-post
+                Epost
                 <RequiredMark />
               </span>
               <input

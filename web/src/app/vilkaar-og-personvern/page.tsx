@@ -17,7 +17,7 @@ export default function TermsPrivacyPage() {
           <SectionHeading
             eyebrow="Vilkår og personvern"
             title="Enkel informasjon"
-            subtitle="Kort oppsummert – dette er en maltekst og kan tilpasses."
+            subtitle="Kort oppsummert: dette er en maltekst og kan tilpasses."
           />
 
           <div className="mt-10 space-y-8 rounded-md border border-border bg-surface p-7 shadow-sm md:p-10">
@@ -33,7 +33,7 @@ export default function TermsPrivacyPage() {
               <h2 className="text-lg font-bold tracking-tight">Personvern (GDPR)</h2>
               <p className="text-sm leading-7 text-muted">
                 Når du sender inn et skjema på nettsiden vår, behandler vi
-                opplysninger som navn, e-post, telefon og melding for å kunne
+                opplysninger som navn, epost, telefon og melding for å kunne
                 svare deg med informasjon og/eller tilbud. Vi bruker kun
                 opplysningene til formålet det ble gitt for.
               </p>

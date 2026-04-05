@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | A.S Bygg AS",
   },
   description:
-    "Profesjonell takvask og vedlikehold. Vi fjerner mose, alger og smuss – og forlenger levetiden på taket ditt.",
+    "Profesjonell takvask og vedlikehold. Vi fjerner mose, alger og smuss, og forlenger levetiden på taket ditt.",
 };
 
 export default function RootLayout({
