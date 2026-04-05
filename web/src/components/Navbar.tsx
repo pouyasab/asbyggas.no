@@ -76,8 +76,8 @@ export default function Navbar() {
             />
           </Link>
 
-          <nav className="hidden items-center gap-6 md:flex" aria-label="Hovedmeny">
-            {navLinks.slice(0, 5).map((l) => {
+          <nav className="hidden min-w-0 flex-1 flex-wrap items-center justify-center gap-x-3 gap-y-1 md:flex lg:gap-x-5" aria-label="Hovedmeny">
+            {navLinks.map((l) => {
               const active = isActive(pathname, l.href);
               return (
                 <Link
