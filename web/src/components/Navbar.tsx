@@ -68,9 +68,9 @@ export default function Navbar() {
             <Image
               src="/logo-asbygg.png"
               alt="A.S Bygg AS"
-              width={1024}
-              height={490}
-              className="site-logo h-12 w-auto bg-transparent object-contain object-left sm:h-14 md:h-16"
+              width={768}
+              height={368}
+              className="h-12 w-auto bg-transparent object-contain object-left sm:h-14 md:h-16"
               priority
               sizes="(max-width: 640px) 280px, (max-width: 1024px) 360px, 420px"
             />

@@ -35,8 +35,3 @@ body {
 ::selection {
   background: rgba(31, 77, 58, 0.22);
 }
-
-/* Justerer logo (tidligere turkis) mot samme grønnfarge som --accent */
-.site-logo {
-  filter: hue-rotate(-34deg) saturate(1.18) brightness(0.9) contrast(1.03);
-}
