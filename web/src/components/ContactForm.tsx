@@ -46,7 +46,8 @@ function RequiredMark() {
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(empty);
-  const [status, setStatus] = useState<"idle" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const isValid = useMemo(() => {
     return (
@@ -58,10 +59,28 @@ export default function ContactForm() {
     );
   }, [form]);
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     if (!isValid) return;
-    setStatus("sent");
+    setErrorMessage(null);
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setErrorMessage(data.error || "Kunne ikke sende. Prøv igjen.");
+        setStatus("error");
+        return;
+      }
+      setStatus("sent");
+    } catch {
+      setErrorMessage("Nettverksfeil. Sjekk tilkoblingen og prøv igjen.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -73,13 +92,14 @@ export default function ContactForm() {
             Takk! Henvendelsen er sendt.
           </div>
           <p className="text-sm leading-7 text-muted">
-            Denne malen lagrer ikke innsendte data. Koble til backend eller epostsending når du er klar.
+            Vi har mottatt meldingen din og svarer så snart vi kan.
           </p>
           <button
             type="button"
             onClick={() => {
               setForm(empty);
               setStatus("idle");
+              setErrorMessage(null);
             }}
             className="mt-4 inline-flex h-12 items-center justify-center rounded-md border border-border bg-surface-2 px-6 text-sm font-semibold text-foreground transition-colors hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
           >
@@ -217,13 +237,19 @@ export default function ContactForm() {
             Ved innsending godtar du at vi kan bruke opplysningene til å svare deg.
           </p>
 
+          {errorMessage ? (
+            <p className="text-sm text-red-600" role="alert">
+              {errorMessage}
+            </p>
+          ) : null}
+
           <div>
             <button
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || status === "sending"}
               className="inline-flex h-11 min-w-[120px] items-center justify-center rounded-md border border-border bg-surface-2 px-8 text-sm font-semibold text-foreground transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              Send
+              {status === "sending" ? "Sender…" : "Send"}
             </button>
           </div>
         </form>

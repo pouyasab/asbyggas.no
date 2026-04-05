@@ -21,6 +21,8 @@ function BefaringModal({
   const [navn, setNavn] = useState("");
   const [telefon, setTelefon] = useState("");
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -41,11 +43,28 @@ function BefaringModal({
   const canSubmit =
     navn.trim().length >= 2 && telefon.replace(/\s/g, "").length >= 6;
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    if (!canSubmit) return;
-    setSent(true);
-    // Koble til API eller epost senere.
+    if (!canSubmit || sending) return;
+    setErrorMessage(null);
+    setSending(true);
+    try {
+      const res = await fetch("/api/befaring", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ navn: navn.trim(), telefon: telefon.trim() }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setErrorMessage(data.error || "Kunne ikke sende. Prøv igjen.");
+        return;
+      }
+      setSent(true);
+    } catch {
+      setErrorMessage("Nettverksfeil. Prøv igjen.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -121,12 +140,17 @@ function BefaringModal({
                 className="h-12 w-full rounded-md border border-border bg-white px-4 text-sm outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
               />
             </label>
+            {errorMessage ? (
+              <p className="text-sm text-red-600" role="alert">
+                {errorMessage}
+              </p>
+            ) : null}
             <button
               type="submit"
-              disabled={!canSubmit}
+              disabled={!canSubmit || sending}
               className="inline-flex h-12 w-full items-center justify-center rounded-md bg-accent px-6 text-sm font-black uppercase tracking-wide text-white transition-colors hover:bg-accent/90 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
             >
-              Kontakt meg for avtale befaring
+              {sending ? "Sender…" : "Kontakt meg for avtale befaring"}
             </button>
           </form>
         )}
