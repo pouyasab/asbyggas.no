@@ -82,11 +82,6 @@ export default function TermsPrivacyPage() {
                 </div>
               </div>
             </div>
-
-            <div className="text-xs text-muted">
-              Merk: Dette er en enkel mal for å komme i gang. For fullt samsvar
-              anbefaler vi å gjennomgå teksten med juridisk rådgiver.
-            </div>
           </div>
         </Container>
       </section>
