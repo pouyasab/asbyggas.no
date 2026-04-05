@@ -119,15 +119,17 @@ export default function Home() {
       {/* Hvorfor velge oss */}
       <section className="py-14 md:py-18">
         <Container>
-          <div className="grid gap-10 md:grid-cols-2 md:items-start">
-            <div className="flex flex-col gap-6 md:gap-8">
-              <SectionHeading
-                eyebrow="Hvorfor velge oss"
-                title="Ryddig arbeid. Riktig utstyr. Norsk klima."
-                subtitle="Vi møter opp når vi skal, jobber effektivt og leverer et resultat du kan se."
-              />
-              <figure className="overflow-hidden rounded-md border border-border bg-surface shadow-sm">
-                <div className="relative aspect-[4/3] w-full bg-surface-2 sm:aspect-[16/10]">
+          <div className="grid gap-8 md:grid-cols-2 md:items-stretch md:gap-10 lg:gap-12">
+            <div className="flex min-h-0 flex-col gap-6 md:h-full md:gap-8">
+              <div className="shrink-0">
+                <SectionHeading
+                  eyebrow="Hvorfor velge oss"
+                  title="Ryddig arbeid. Riktig utstyr. Norsk klima."
+                  subtitle="Vi møter opp når vi skal, jobber effektivt og leverer et resultat du kan se."
+                />
+              </div>
+              <figure className="relative aspect-[4/3] w-full overflow-hidden rounded-md border border-border bg-surface-2 shadow-sm md:aspect-auto md:min-h-0 md:flex-1">
+                <div className="absolute inset-0">
                   <Image
                     src="/hvorfor-velge-oss.png"
                     alt="Håndverker med verneutstyr ved tak med teglstein"
@@ -139,19 +141,22 @@ export default function Home() {
               </figure>
             </div>
 
-            <div className="grid gap-4">
+            <ul className="flex min-h-0 list-none flex-col gap-3 md:h-full md:gap-4">
               {[
                 { title: "Erfaring", text: "Vi vet hva som fungerer på norske tak." },
                 { title: "Kvalitetsutstyr", text: "Riktig trykk og riktig metode, uten å skade taket." },
                 { title: "Tilpasset norsk klima", text: "Behandling som tåler fukt, frost og vær." },
                 { title: "Pålitelig service", text: "Tydelig avtale, ryddig gjennomføring." },
               ].map((r) => (
-                <div key={r.title} className="rounded-md border border-border bg-surface p-6 shadow-sm">
-                  <div className="text-sm font-black uppercase tracking-wide">{r.title}</div>
+                <li
+                  key={r.title}
+                  className="flex flex-1 flex-col justify-center rounded-md border border-border bg-surface px-5 py-4 shadow-sm md:px-6 md:py-5"
+                >
+                  <div className="text-sm font-black uppercase tracking-wide text-accent">{r.title}</div>
                   <p className="mt-2 text-sm leading-7 text-muted">{r.text}</p>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </Container>
       </section>
