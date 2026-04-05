@@ -32,7 +32,7 @@ export default function ServicesPage() {
                   <Droplets className="h-5 w-5" aria-hidden="true" />
                 </div>
                 <div className="flex-1">
-                  <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Takvask (hovedtjeneste)</h2>
+                  <h2 className="text-2xl font-black tracking-tight sm:text-3xl">Takvask</h2>
                   <p className="mt-3 text-sm leading-7 text-muted sm:text-base">
                     Takvask handler om å fjerne mose, alger og smuss på en skånsom måte, uten å skade takstein eller overflater.
                     Riktig vask gir bedre utseende og kan forebygge unødvendig slitasje.
