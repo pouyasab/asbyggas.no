@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     tilbudTakmaling && "Takmaling",
     tilbudTakfornying && "Takfornying",
     tilbudBefaring && "Befaring",
-  ].filter(Boolean);
+  ].filter((item): item is string => Boolean(item));
 
   const text = [
     `Ny henvendelse fra nettsiden`,
